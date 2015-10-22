@@ -124,7 +124,7 @@ module.exports = function(sails) {
             log += "-> Disabled Job '" + _name + "' found in '" + namespace + "." + name + "'.";
           } else {
             var options = (typeof _job.options === 'object')?_job.options:{}
-              , freq = _job.frequency
+              , freq = typeof _job.frequency == 'undefined'?sails.config.jobs.processEvery:_job.frequency
               , error = false;
 
             if (typeof _job.run === "function")
